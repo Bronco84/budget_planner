@@ -54,7 +54,7 @@
 				   	@else
 				   		<hr>
 					   	<div class="text-danger text-center">
-					   		<p>No transactions found for this period!</p>
+					   		<p>No transactions found!</p>
 					   	</div>
 				   	@endif
 				</div>
