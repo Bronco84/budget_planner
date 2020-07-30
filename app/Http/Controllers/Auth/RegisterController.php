@@ -51,9 +51,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'in:["bamccoley@gmail.com", "kristenlmccoley@gmail.com"]'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], 
+        ['in' => 'The supplied email address is not approved for registration.']);
     }
 
     /**
