@@ -35,7 +35,6 @@
 				   		@endforeach
 
 				   	@else
-				   		<hr>
 					   	<div class="text-danger text-center">
 					   		<p>No transactions found for this period!</p>
 					   	</div>
