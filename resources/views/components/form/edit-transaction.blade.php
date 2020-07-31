@@ -13,9 +13,9 @@
 <div class="container">
 	<div class="card" style="max-width:600px;margin:auto">
 		<div class="card-body">
-			<h5><i class="fas fa-plus-circle"></i> Edit Transaction #{{$transaction->id}}</h5>
+			<h5>Edit Transaction #{{$transaction->id}}</h5>
 			<hr>
-			<p><a href="{{ route('transaction.duplicate', [$transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a><a onclick="deleteTransaction({{$transaction->id}})" class="pull-right text-danger" style="float:right; cursor:pointer" >Delete this transaction <i class="far fa-trash-alt"></i></a></p>
+			<p><a href="{{ route('transaction.duplicate', [$transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a><a onclick="deleteTransaction({{$transaction->id}})" class="text-danger" style="float:right; cursor:pointer" >Delete this transaction <i class="far fa-trash-alt"></i></a></p>
 		    <form method="POST" action="/transaction/{{$transaction->id}}">
 		    	@method('PATCH')
 			    @csrf

@@ -18,7 +18,7 @@
 					<h4>Transactions</h4>
 				</div>
 				<div class="card-body">
-					<p><a href="{{ route('transaction.create') }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> | <a href="{{ route('budget') }}" style="margin-left:8px;"><i class="fas fas fa-money-bill-wave"></i> View Budget</a></p>
+					<p><a href="{{ route('budget.transaction.create', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> | <a href="{{ route('budget.show', [$budget]) }}" style="margin-left:8px;"><i class="fas fas fa-money-bill-wave"></i> View Budget</a></p>
 					@if(count($transactions) > 0)
 					    <table class="table table-striped table-sm">
 					        <thead>
@@ -44,7 +44,7 @@
 						           		<td>{{$transaction->day_of_month}}</td>
 						                <td class="{{$transaction->amount_in_cents > 0 ? 'text-success' : 'text-danger'}}">{{$transaction->formatted_amount}}</td>
 						                <td class="text-right">
-						                	<a href="{{ route('transaction.edit', ['transaction' => $transaction->id]) }}" style="margin-right:8px;">edit</a> | 
+						                	<a href="{{ route('budget.transaction.edit', [$budget, $transaction]) }}" style="margin-right:8px;">edit</a> | 
 						                	<a onclick="deleteTransaction({{$transaction->id}})" style="margin-left:8px;cursor:pointer" class="text-danger">delete</a>
 						                </td>
 						            </tr>

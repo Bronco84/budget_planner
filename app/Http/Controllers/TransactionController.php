@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transaction;
+use App\Budget;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -12,10 +13,10 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Budget $budget)
     {
-        $transactions = Transaction::all();
-        return view('components.tables.transactions')->with(compact('transactions'));
+        $transactions = $budget->transactions;
+        return view('components.tables.transactions')->with(compact('budget', 'transactions'));
     }
 
     /**
@@ -79,9 +80,9 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction $transaction)
+    public function edit(Budget $budget, Transaction $transaction)
     {
-        return view('components.form.edit-transaction')->with(compact('transaction'));
+        return view('components.form.edit-transaction')->with(compact('budget', 'transaction'));
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Transaction;
+use App\Budget;
+use App\Group;
 use Illuminate\Http\Request;
 
 class BudgetController extends Controller
@@ -22,23 +24,35 @@ class BudgetController extends Controller
 
 	public $futureDate;
 
-    public function show(Request $request)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Budget  $budget
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show(Request $request, Budget $budget)
     {
 
-    	$this->originalBalance = 877064;
+        $accountBalance = $budget->account_balances()->latest()->first();
 
-    	$this->currentBalance = 877064; //AccountBalance::all()->latest()->first();
+        if(!$accountBalance){
+            $request->session()->flash('status', 'Create account balance before viewing budget!');
 
-    	$this->balanceDate = now()->addDay(2);//$currenBalance->date;
+            return redirect()->route('budget.account-balance.create', [$budget]);
+        }
 
-    	$this->originalBalanceDate = now()->addDay(2);//$currenBalance->date;
+    	$this->originalBalance = $accountBalance->balance_in_cents;
 
-    	$this->transactions = Transaction::all();
+    	$this->currentBalance = $accountBalance->balance_in_cents; 
+
+    	$this->balanceDate = $accountBalance->as_of_date;
+
+    	$this->originalBalanceDate = $accountBalance->as_of_date;
+
+    	$this->transactions = $budget->transactions;
 
     	$this->futureDate = now()->addMonth(4);
-
-
-    	//dd(Transaction::find(6)->date->equalTo($this->balanceDate));
 
     	while($this->balanceDate->lte($this->futureDate))
     	{
@@ -70,7 +84,8 @@ class BudgetController extends Controller
     	return view('components.tables.budget')->with([
     		'account_balance'=> $this->originalBalance,
     		'account_balance_date' => $this->originalBalanceDate,
-    		'occurances' => $this->occurances
+    		'occurances' => $this->occurances,
+            'budget' => $budget,
     	]);
     }
 
@@ -82,4 +97,73 @@ class BudgetController extends Controller
 			'running_total' => $this->currentBalance = $this->currentBalance + $transaction->amount_in_cents    				
 		];
     }
+
+        /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('components.form.add-budget');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $budget = new Budget;
+
+        $budget->description = $request->description;
+        $budget->notes = $request->notes;
+        $budget->created_by = $request->user()->id;
+        $budget->group_id = $request->user()->group_id;
+
+        $budget->save();
+
+        return redirect()->route('budget.show', [$budget]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Budget  $budget
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Budget $budget)
+    {
+        return view('components.form.edit-budget')->with(compact('budget'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Budget  $budget
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Budget $budget)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Budget  $budget
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Budget $budget)
+    {
+        $budget->transactions()->delete();
+        $budget->account_balances()->delete();
+        $budget->delete();
+    }
+
+
+
 }

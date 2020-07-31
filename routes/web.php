@@ -23,10 +23,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::resource('/transaction', 'TransactionController');
+	Route::resource('budget', 'BudgetController');
 
-	Route::get('/transaction/{transaction}/duplicate', 'TransactionController@duplicate')->name('transaction.duplicate');
+	Route::resource('budget.account-balance', 'AccountBalanceController');
 
-	Route::get('/budget', 'BudgetController@show')->name('budget');
+	Route::resource('budget.transaction', 'TransactionController');
+
+	Route::get('transaction/{transaction}/duplicate', 'TransactionController@duplicate')->name('transaction.duplicate');
 
 });

@@ -17,9 +17,9 @@ class Transaction extends Model
 	];
 
     /**
-     * Set the user's first name.
+     * Set the transaction's amount.
      *
-     * @param  string  $value
+     * @param  integer  $value
      * @return void
      */
     public function setAmountInCentsAttribute($value)
