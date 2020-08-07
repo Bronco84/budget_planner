@@ -9,9 +9,9 @@ use Illuminate\Validation\Rule;
 
 class BudgetLinkController extends Controller
 {
-    public function show_link_form(Request $request)
+    public function show_link_form(Request $request, Budget $budget = null)
     {
-    	return view('components.form.link-budget')->with(['user' => $request->user()]);
+    	return view('components.form.link-budget')->with(['user' => $request->user(), 'budget' => $budget]);
     }
 
     public function store_link(Request $request)
@@ -44,5 +44,6 @@ class BudgetLinkController extends Controller
     	$user->linked_budgets()->attach($budget);
     	
     	return back()->with('status', 'Budget linked successfully!');
+
     }
 }

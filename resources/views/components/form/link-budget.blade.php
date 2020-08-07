@@ -10,8 +10,8 @@
 			    <div class="form-group">
 			    	<label>Budget*</label>
 			    	<select class="form-control" name="budget_id">
-			    		@foreach($user->budgets as $budget)
-			    			<option value="{{$budget->id}}">{{$budget->description}}</option>
+			    		@foreach($user->budgets as $user_budget)
+			    			<option {{$budget && $budget->id == $user_budget->id ? 'selected' : ''}} value="{{$user_budget->id}}">{{$user_budget->description}}</option>
 			    		@endforeach
 			    	</select>
 			    </div>

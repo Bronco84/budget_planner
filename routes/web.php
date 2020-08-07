@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('budget-link', 'BudgetLinkController@store_link')->name('budget.link.post');
 
-	Route::get('budget-link', 'BudgetLinkController@show_link_form')->name('budget.link.form');
+	Route::get('budget-link/{budget?}', 'BudgetLinkController@show_link_form')->name('budget.link.form');
 
 	Route::resource('budget.account-balance', 'AccountBalanceController');
 
