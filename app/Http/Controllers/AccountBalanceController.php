@@ -25,7 +25,9 @@ class AccountBalanceController extends Controller
      */
     public function create(Budget $budget)
     {
-        return view('components.form.add-account-balance')->with(compact('budget'));
+
+        $account_balance = $budget->account_balances()->latest()->first();
+        return view('components.form.add-account-balance')->with(compact('budget', 'account_balance'));
     }
 
     /**

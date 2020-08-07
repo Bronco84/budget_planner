@@ -16,7 +16,7 @@
 			<h5>Edit Transaction #{{$transaction->id}}</h5>
 			<hr>
 			<p><a href="{{ route('transaction.duplicate', [$transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a><a onclick="deleteTransaction({{$transaction->id}})" class="text-danger" style="float:right; cursor:pointer" >Delete this transaction <i class="far fa-trash-alt"></i></a></p>
-		    <form method="POST" action="/transaction/{{$transaction->id}}">
+		    <form method="POST" action="{{route('budget.transaction.update', [$budget, $transaction])}}">
 		    	@method('PATCH')
 			    @csrf
 			    <div class="form-group">
@@ -38,22 +38,22 @@
 				<div class="form-group">
 					<label>Frequency</label>
 					<select class="form-control" name="frequency" value="{{ $transaction->frequency }}">
-						<option>One Time</option>
-						<option>Weekly</option>
-						<option>Bi-Weekly</option>
-						<option>Monthly</option>
+						<option {{ $transaction->frequency == 'One Time' ? 'selected' : ''}}>One Time</option>
+						<option {{ $transaction->frequency == 'Weekly' ? 'selected' : ''}}>Weekly</option>
+						<option {{ $transaction->frequency == 'Bi-Weekly' ? 'selected' : ''}}>Bi-Weekly</option>
+						<option {{ $transaction->frequency == 'Monthly' ? 'selected' : ''}}>Monthly</option>
 					</select>
 				</div>
 				<div class="form-group">
 			    	<label>Day of Week (if weekly or bi-weekly)</label>
 			    	<select class="form-control" type="date" name="day_of_week" value="{{ $transaction->day_of_week }}">
-			    		<option>Monday</option>
-			    		<option>Tuesday</option>
-			    		<option>Wednesday</option>
-			    		<option>Thursday</option>
-			    		<option>Friday</option>
-			    		<option>Saturday</option>
-			    		<option>Sunday</option>
+			    		<option {{ $transaction->day_of_week == 'Monday' ? 'selected' : ''}}>Monday</option>
+			    		<option {{ $transaction->day_of_week == 'Tuesday' ? 'selected' : ''}}>Tuesday</option>
+			    		<option {{ $transaction->day_of_week == 'Wednesday' ? 'selected' : ''}}>Wednesday</option>
+			    		<option {{ $transaction->day_of_week == 'Thursday' ? 'selected' : ''}}>Thursday</option>
+			    		<option {{ $transaction->day_of_week == 'Friday' ? 'selected' : ''}}>Friday</option>
+			    		<option {{ $transaction->day_of_week == 'Saturday' ? 'selected' : ''}}>Saturday</option>
+			    		<option {{ $transaction->day_of_week == 'Sunday' ? 'selected' : ''}}>Sunday</option>
 			    	</select>
 			   	</div>
 			   	<div class="form-group">

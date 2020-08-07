@@ -3,8 +3,14 @@
 <div class="container">
 	<div class="card" style="max-width:600px;margin:auto">
 		<div class="card-body">
-			<h5><i class="fas fa-plus-circle"></i> Add Account Balance</h5>
+			<h5><i class="fas fa-plus-circle"></i> Add Account Balance {{$budget->description}}</h5>
 			<hr>
+				@if($account_balance)
+					<div class="alert alert-info">
+						Last indicated balance: ${{$account_balance->balance_in_cents/100}} on {{$account_balance->created_at->format('F d, Y')}}
+					</div>
+				@endif
+
 		    <form method="POST" action="/budget/{{$budget->id}}/account-balance">
 			    @csrf
 			    <div class="form-group">

@@ -24,9 +24,9 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Budget $budget)
     {
-        return view('components.form.add-transaction');
+        return view('components.form.add-transaction')->with('budget', $budget);
     }
 
     /**
@@ -35,7 +35,7 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Budget $budget)
     {
 
         $request->validate([
@@ -45,7 +45,7 @@ class TransactionController extends Controller
         ]);
 
         $transaction = new Transaction;
-
+        $transaction->budget_id = $budget->id;
         $transaction->description = $request->description;
         $transaction->created_by = $request->user()->name;
         $transaction->account = $request->account;
@@ -60,7 +60,7 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        return redirect('transaction');
+        return back()->with('status', 'Transaction created successfully!');
     }
 
     /**
@@ -92,7 +92,7 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, Budget $budget, Transaction $transaction)
     {
         $request->validate([
             'description' => 'required|string',
@@ -114,7 +114,7 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        return redirect('transaction');
+        return back()->with('status', $request->description . ' was updated successfully!');
     }
 
     /**
@@ -123,7 +123,7 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Budget $budget, Transaction $transaction)
     {
         $transaction->delete();
     }

@@ -5,7 +5,7 @@
 		<div class="card-body">
 			<h5><i class="fas fa-plus-circle"></i> Add Transaction</h5>
 			<hr>
-		    <form method="POST" action="/transaction">
+		    <form method="POST" action="{{route('budget.transaction.store', [$budget])}}">
 			    @csrf
 			    <div class="form-group">
 			    	<label>Description*</label>
