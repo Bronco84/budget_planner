@@ -31,10 +31,9 @@
 										@endforeach
 									</div>
 								</div>
-								<hr>
 								@endforeach
 							</div>
-
+							<hr>
 				   		@endforeach
 				   	@else
 					   	<div class="text-danger text-center">
