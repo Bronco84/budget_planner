@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
 				<div class="card-header">
-			    	<h4 class="text-center">{{$budget->description}}<small><a href="{{ route('budget.edit', [$budget]) }}" style="margin-left:8px;">edit <i class="far fa-edit"></i></a></small></h4>
+			    	<h4 class="text-center">{{$budget->description}}<small style="font-size:15px;"><a href="{{ route('budget.edit', [$budget]) }}" style="margin-left:8px;">edit <i class="far fa-edit"></i></a></small></h4>
 			    	<hr>
 			    	<div><b>Current Date:</b> {{date('F d, Y')}}</div>
 			    	<div><b>View:</b> {{count($occurances)}} Month Projection</div>
