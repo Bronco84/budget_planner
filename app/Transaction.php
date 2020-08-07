@@ -17,6 +17,16 @@ class Transaction extends Model
 	];
 
     /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['budget'];
+
+    public function budget(){
+        return $this->belongsTo('App\Budget');
+    }
+    /**
      * Set the transaction's amount.
      *
      * @param  integer  $value

@@ -9,6 +9,11 @@ class Budget extends Model
     public function transactions()
     {
         return $this->hasMany('App\Transaction');
+    }       
+
+    public function created_by_user()
+    {
+        return $this->belongsTo('App\User', 'created_by', 'id');
     }    
 
     public function account_balances()
@@ -16,9 +21,6 @@ class Budget extends Model
         return $this->hasMany('App\AccountBalance');
     }
 
-    /**
-    * The products that belong to the shop.
-    */
     public function connected_budgets()
     {
         return $this->belongsToMany('App\User');

@@ -13,6 +13,17 @@ class AccountBalance extends Model
 		'as_of_date'
 	];
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['budget'];
+
+    public function budget(){
+        return $this->belongsTo('App\Budget');
+    }
+
      /**
      * Set the account's balance.
      *

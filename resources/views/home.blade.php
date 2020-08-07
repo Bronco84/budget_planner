@@ -15,12 +15,14 @@
                     <div class="row">
                       <div class="col-12">
                         @if ($user->budgets->count() > 0)
-
-
+                            @foreach($user->budgets as $budget)
+                                <a href="{{route('budget.show', [$budget])}}"><i class="fas fa-list-alt"></i>&nbsp;&nbsp;&nbsp;{{$budget->description}}</a> (Created by you) <a class="float-right" href="{{route('budget.edit', [$budget])}}">edit</a>
+                                <hr>
+                            @endforeach
                         @endif
                         @if ($user->linked_budgets->count() > 0)
                             @foreach($user->linked_budgets as $budget)
-                                <a href="{{route('budget.show', [$budget])}}"><i class="fas fa-list-alt"></i>&nbsp;&nbsp;&nbsp;{{$budget->description}}</a> (Created by you) <a class="float-right" href="{{route('budget.edit', [$budget])}}">edit</a>
+                                <a href="{{route('budget.show', [$budget])}}"><i class="fas fa-list-alt"></i>&nbsp;&nbsp;&nbsp;{{$budget->description}}</a> (Linked to you by {{$budget->created_by_user->name}})
                                 <hr>
                             @endforeach
                         @endif
