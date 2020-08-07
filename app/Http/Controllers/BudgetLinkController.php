@@ -18,7 +18,6 @@ class BudgetLinkController extends Controller
     {
 
     	$user = User::where('email', $request->email)->first();
-    	$budget_id = $request->id;
 
     	if(!$user){
     		return view('components.form.link-budget')->with(['user' => $request->user()])->withErrors(['user' => "The requested email was not found in our registered users!"]);
@@ -29,17 +28,21 @@ class BudgetLinkController extends Controller
     	}
 
     	$request->validate([
-    		'budget_id' => Rule::unique('budget_user')->where(function ($query) use ($user) {
-	                return $query->where('user_id', $user->id);
-	        }),
+    		'budget_id' => [
+	    		Rule::unique('budget_user')->where(function ($query) use ($user) {
+		                return $query->where('user_id', $user->id);
+		        }),
+		        'exists:budgets,id',
+		        'required'
+		    ]
     	], 
     	[
     		'budget_id.unique' => "This budget has already been linked to {$request->email}."
     	]);
 
-    	$budget = Budget::findOrFail($request->id);
-    	//$user->linked_budgets()->attach($budget);
-
-    	return redirect()->route('home');
+    	$budget = Budget::find($request->budget_id);
+    	$user->linked_budgets()->attach($budget);
+    	
+    	return back()->with('status', 'Budget linked successfully!');
     }
 }

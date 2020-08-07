@@ -7,7 +7,6 @@
 			<hr>
 		     <form method="POST" action="/budget-link">
 			    @csrf
-
 			    <div class="form-group">
 			    	<label>Budget*</label>
 			    	<select class="form-control" name="budget_id">
