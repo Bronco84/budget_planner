@@ -15,4 +15,12 @@ class Budget extends Model
     {
         return $this->hasMany('App\AccountBalance');
     }
+
+    /**
+    * The products that belong to the shop.
+    */
+    public function connected_budgets()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

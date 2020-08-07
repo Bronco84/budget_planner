@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use App\Budget;
-use App\Group;
 use Illuminate\Http\Request;
 
 class BudgetController extends Controller
@@ -121,7 +120,6 @@ class BudgetController extends Controller
         $budget->description = $request->description;
         $budget->notes = $request->notes;
         $budget->created_by = $request->user()->id;
-        $budget->group_id = $request->user()->group_id;
 
         $budget->save();
 

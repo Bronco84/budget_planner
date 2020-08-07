@@ -37,9 +37,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function group()
+    /**
+    * The products that belong to the shop.
+    */
+    public function budgets()
     {
-        return $this->belongsTo('App\Group');
+        return $this->hasMany('App\Budget', 'created_by');
+    }
+
+    /**
+    * The products that belong to the shop.
+    */
+    public function linked_budgets()
+    {
+        return $this->belongsToMany('App\Budget');
     }
 
 }
