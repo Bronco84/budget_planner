@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Budget extends Model
 {
+
+    public $fillable = ['description', 'notes'];
+
     public function transactions()
     {
         return $this->hasMany('App\Transaction');

@@ -151,7 +151,9 @@ class BudgetController extends Controller
      */
     public function update(Request $request, Budget $budget)
     {
-        //
+        $budget->update($request->all());
+
+        return back()->with('status', 'Budget was updated successfully!');
     }
 
     /**
