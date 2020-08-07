@@ -5,7 +5,8 @@
         <div class="col-md-12">
             <div class="card">
 				<div class="card-header">
-			    	<h5>{{$budget->description}}<small><a href="{{ route('budget.edit', [$budget]) }}" style="margin-left:8px;">edit</a></small></h5>
+			    	<h4 class="text-center">{{$budget->description}}<small><a href="{{ route('budget.edit', [$budget]) }}" style="margin-left:8px;">edit</a></small></h4>
+			    	<hr>
 			    	<div><b>Current Date:</b> {{date('F d, Y')}}</div>
 			    	<div><b>View:</b> {{count($occurances)}} Month Projection</div>
 			    	<div><b>Last Checking Account Balance:</b> ${{$account_balance/100}} ({{$account_balance_date->format('F d, Y')}})<small><a href="{{ route('budget.account-balance.create', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-plus-circle"></i> add new balance</a></small></div>
