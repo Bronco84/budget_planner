@@ -84,7 +84,7 @@ class BudgetController extends Controller
     		$this->balanceDate->addDay(1);
 
     	}
-    	//return $this->occurances;
+
     	return view('components.tables.budget')->with([
     		'account_balance'=> $this->originalBalance,
     		'account_balance_date' => $this->originalBalanceDate,

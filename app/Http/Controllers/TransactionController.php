@@ -60,7 +60,7 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        return back()->with('status', 'Transaction created successfully!');
+        return redirect()->route('budget.show', [$budget])->with('status', 'Transaction created successfully!');
     }
 
     /**
