@@ -55,7 +55,7 @@ class BudgetController extends Controller
 
     	$this->transactions = $budget->transactions;
 
-    	$this->futureDate = now()->addMonth(4);
+    	$this->futureDate = now()->addMonth(4)->endOfMonth();
 
     	while($this->balanceDate->lte($this->futureDate))
     	{
