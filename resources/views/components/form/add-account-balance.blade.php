@@ -19,7 +19,7 @@
 			    </div>
 			    <div class="form-group">
 			    	<label>Balance*</label>
-			    	<input required placeholder="Account Balance" class="form-control" type="number" name="balance" value="{{ old('balance_in_cents') }}"/>
+			    	<input required placeholder="Account Balance" class="form-control" type="number" step="any" name="balance" value="{{ old('balance_in_cents') }}"/>
 			    </div>
 			    <div class="form-group">
 			    	<label>Date*</label>

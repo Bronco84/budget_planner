@@ -14,7 +14,7 @@
 			    </div>
 			    <div class="form-group">
 			    	<label>Amount* (enter in dollars and cents)</label>
-			  		<input required placeholder="Expense or income (expense should be a negative number)" class="form-control" type="number" name="amount" value="{{ old('amount') }}"/>
+			  		<input required placeholder="Expense or income (expense should be a negative number)" class="form-control" type="number" step="any" name="amount" value="{{ old('amount') }}"/>
 			  	</div>
 			  	<div class="form-group">
 			    	<label>Category</label>

@@ -27,7 +27,7 @@
 			    </div>
 			    <div class="form-group">
 			    	<label>Amount* (enter in dollars and cents)</label>
-			  		<input required placeholder="Expense or income (expense should be a negative number)" class="form-control" type="number" name="amount" value="{{ $transaction->amount_in_cents/100 }}"/>
+			  		<input required placeholder="Expense or income (expense should be a negative number)" class="form-control" type="number" step="any" name="amount" value="{{ $transaction->amount_in_cents/100 }}"/>
 			  	</div>
 			  	<div class="form-group">
 			    	<label>Category</label>

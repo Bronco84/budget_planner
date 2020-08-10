@@ -37,7 +37,7 @@
 											<div class="row">
 												<div class="col-6"><span>{{$transaction['transaction_detail']['description']}}</span> <small><a href="{{ route('budget.transaction.edit', ['budget' => $budget, 'transaction' => $transaction['transaction_detail']['id']]) }}" style="margin-left:8px;">edit <i class="far fa-edit"></i></a></small></div>
 												<div class="col-3"><span class="{{$transaction['transaction_detail']['amount_in_cents'] > 0 ? 'text-success' : 'text-danger'}}">{{$transaction['transaction_detail']['formatted_amount']}}</span></div>
-												<div class="col-3">${{number_format($transaction['running_total']/100)}}</div>
+												<div class="col-3">${{number_format(($transaction['running_total']/100), 2, '.', ',')}}</div>
 											</div>
 										@endforeach
 									</div>
