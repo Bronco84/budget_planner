@@ -14,7 +14,7 @@ class AddMonthsForProjectionColumnToBudgetsTable extends Migration
     public function up()
     {
         Schema::table('budgets', function (Blueprint $table) {
-            $table->tinyint('months_for_projection')->default(3);
+            $table->tinyInteger('months_for_projection')->default(3);
         });
     }
 
