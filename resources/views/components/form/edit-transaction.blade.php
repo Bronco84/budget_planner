@@ -15,7 +15,7 @@
 		<div class="card-body">
 			<h5>Edit Transaction #{{$transaction->id}}</h5>
 			<hr>
-			<p><a href="{{ route('transaction.duplicate', [$transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a><a onclick="deleteTransaction({{$transaction->id}})" class="text-danger" style="float:right; cursor:pointer" >Delete this transaction <i class="far fa-trash-alt"></i></a></p>
+			<p><a href="{{ route('budget.transaction.duplicate', [$budget, $transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a><a onclick="deleteTransaction({{$transaction->id}})" class="text-danger" style="float:right; cursor:pointer" >Delete this transaction <i class="far fa-trash-alt"></i></a></p>
 		    <form method="POST" action="{{route('budget.transaction.update', [$budget, $transaction])}}">
 		    	@method('PATCH')
 			    @csrf

@@ -33,6 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('budget.transaction', 'TransactionController');
 
-	Route::get('transaction/{transaction}/duplicate', 'TransactionController@duplicate')->name('transaction.duplicate');
+	Route::get('budget/{budget}/transaction/{transaction}/duplicate', 'TransactionController@duplicate')->name('budget.transaction.duplicate');
 
 });

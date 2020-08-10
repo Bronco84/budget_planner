@@ -128,12 +128,12 @@ class TransactionController extends Controller
         $transaction->delete();
     }
 
-    public function duplicate(Transaction $transaction)
+    public function duplicate(Budget $budget, Transaction $transaction)
     {
         $new_transaction = $transaction->replicate();
 
         $new_transaction->save();
 
-        return redirect()->route('transaction.edit', [$new_transaction]);
+        return redirect()->route('budget.transaction.edit', [$budget, $new_transaction])->with('status', 'The transaction was duplicated successfully! Use the form to edit below.');;
     }
 }

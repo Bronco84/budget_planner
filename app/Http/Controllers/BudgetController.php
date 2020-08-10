@@ -23,7 +23,6 @@ class BudgetController extends Controller
 
 	public $futureDate;
 
-
     public function index(Request $request)
     {
         return redirect()->route('home');
