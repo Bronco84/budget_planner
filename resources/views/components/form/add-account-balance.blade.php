@@ -15,7 +15,7 @@
 			    @csrf
 			    <div class="form-group">
 			    	<label>Description*</label>
-			    	<input required placeholder="Short description of Account" class="form-control" type="text" name="description" value="{{ old('description') }}"/>
+			    	<input required placeholder="Number of months to use for forcasting balance" class="form-control" type="text" name="description" value="{{ old('description') }}"/>
 			    </div>
 			    <div class="form-group">
 			    	<label>Balance*</label>

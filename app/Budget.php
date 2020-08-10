@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Budget extends Model
 {
 
-    public $fillable = ['description', 'notes'];
+    public $fillable = ['description', 'months_for_projection', 'notes'];
 
     public function transactions()
     {

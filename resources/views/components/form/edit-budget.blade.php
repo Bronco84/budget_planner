@@ -23,6 +23,10 @@
 			    	<label>Description*</label>
 			    	<input required placeholder="Short description for budget" class="form-control" type="text" name="description" value="{{ $budget->description }}"/>
 			    </div>
+			    <div class="form-group">
+			    	<label>Months of Projection*</label>
+			    	<input required placeholder="Number of months to use for forcasting balance" class="form-control" type="number" max="5" min="1" name="months_for_projection" value="{{ $budget->months_for_projection }}"/>
+			    </div>
 				<div class="form-group">
 			    	<label>Notes</label>
 			    	<textarea class="form-control" name="notes" placeholder="Notes about the budget">{{ $budget->notes }}</textarea>
