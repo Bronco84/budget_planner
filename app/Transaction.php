@@ -44,6 +44,6 @@ class Transaction extends Model
 
     public function getFormattedAmountAttribute()
     {
-    	return '$' . number_format(($this->amount_in_cents/100), 2, '.', ' ');
+    	return '$' . number_format(($this->amount_in_cents/100), 2, '.', ',');
     }
 }
