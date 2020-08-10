@@ -8,7 +8,7 @@
 			    	<h4 class="text-center">{{$budget->description}}<small style="font-size:15px;"><a href="{{ route('budget.edit', [$budget]) }}" style="margin-left:8px;">edit <i class="far fa-edit"></i></a></small></h4>
 			    	<hr>
 			    	<div><b>Current Date:</b> {{date('F d, Y')}}</div>
-			    	<div><b>View:</b> {{count($occurances)}} Month Projection</div>
+			    	<div><b>View:</b> {{count($occurances)}} Month Forecast</div>
 			    	<div><b>Last Checking Account Balance:</b> ${{$account_balance/100}} ({{$account_balance_date->format('F d, Y')}})<small><a href="{{ route('budget.account-balance.create', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-plus-circle"></i> add new balance</a></small></div>
 				</div>
 				<div class="card-body">
