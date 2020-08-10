@@ -114,7 +114,7 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        return back()->with('status', $request->description . ' was updated successfully!');
+        return redirect()->route('budget.show', [$budget])->with('status', $request->description . ' was updated successfully!');
     }
 
     /**
