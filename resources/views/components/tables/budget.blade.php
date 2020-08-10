@@ -37,14 +37,16 @@
 											<div class="row">
 												<div class="col-6"><span>{{$transaction['transaction_detail']['description']}}</span> <small><a href="{{ route('budget.transaction.edit', ['budget' => $budget, 'transaction' => $transaction['transaction_detail']['id']]) }}" style="margin-left:8px;">edit <i class="far fa-edit"></i></a></small></div>
 												<div class="col-3"><span class="{{$transaction['transaction_detail']['amount_in_cents'] > 0 ? 'text-success' : 'text-danger'}}">{{$transaction['transaction_detail']['formatted_amount']}}</span></div>
-												<div class="col-3">${{$transaction['running_total']/100}}</div>
+												<div class="col-3">${{number_format($transaction['running_total']/100)}}</div>
 											</div>
 										@endforeach
 									</div>
 								</div>
 								@endforeach
 								<div class="row" style="margin-top:15px;">
-									<span class="badge {{$net > 0 ? 'badge-success' : 'badge-danger'}}" style="padding:6px">Net for {{$month}}: ${{$net/100}}</span>
+									<div class="col-12">
+										<span class="badge {{$net > 0 ? 'badge-success' : 'badge-danger'}}" style="padding:6px">Net for {{$month}}: ${{$net/100}}</span>
+									</div>
 								</div>
 							</div>
 							@if($loop->iteration != $loop->count)
