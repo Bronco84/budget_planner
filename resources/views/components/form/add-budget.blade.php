@@ -12,7 +12,7 @@
 			    	<input required placeholder="Short description for budget" class="form-control" type="text" name="description" value="{{ old('description') }}"/>
 			    </div>
 			    <div class="form-group">
-			    	<label>Months of Projection*</label>
+			    	<label>Months of Projection* (Added to month of latest balance)</label>
 			    	<input required placeholder="Short description for budget" class="form-control" type="number" max="5" min="1" name="months_for_projection" value="{{ $budget->months_for_projection }}"/>
 			    </div>
 				<div class="form-group">
