@@ -5,6 +5,7 @@
 		<div class="card-body">
 			<h5><i class="fas fa-plus-circle"></i> Add Account Balance</h5>
 			<hr>
+			<p><a href="{{ route('budget.show', [$budget]) }}">Return to Budget</a></p>
 		    <form method="POST" action="/account-balance">
 		    	@method('PATCH')
 			    @csrf

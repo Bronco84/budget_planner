@@ -10,7 +10,7 @@
 						Last indicated balance: ${{$account_balance->balance_in_cents/100}} on {{$account_balance->created_at->format('F d, Y')}}
 					</div>
 				@endif
-
+			<p><a href="{{ route('budget.show', [$budget]) }}">Return to Budget</a></p>
 		    <form method="POST" action="/budget/{{$budget->id}}/account-balance">
 			    @csrf
 			    <div class="form-group">

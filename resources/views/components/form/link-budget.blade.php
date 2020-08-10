@@ -5,6 +5,7 @@
 		<div class="card-body">
 			<h5>Link Budget</h5>
 			<hr>
+			<p><a href="{{ route('budget.show', [$budget]) }}">Return to Budget</a></p>
 		     <form method="POST" action="/budget-link">
 			    @csrf
 			    <div class="form-group">
