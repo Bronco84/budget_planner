@@ -11,7 +11,7 @@
 			    	<div><b>View:</b> {{count($occurances)}} Month Forecast</div>
 			    	<div><b>Last Checking Account Balance:</b> ${{$account_balance/100}} ({{$account_balance_date->format('F d, Y')}})<small><a href="{{ route('budget.account-balance.create', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-plus-circle"></i> add new balance</a></small></div>
 				</div>
-				<div class="card-body">
+				<div class="card-body" style="padding-bottom:50px;">
 					<p>
 						<a href="{{ route('budget.transaction.create', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> | 
 						<a href="{{ route('budget.transaction.index', [$budget]) }}" style="margin-left:8px;margin-right:8px;"><i class="fas fa-money-bill-wave"></i> View All Transactions</a> | 
@@ -37,7 +37,9 @@
 								</div>
 								@endforeach
 							</div>
-							<hr>
+							@if($loop->iteration != $loop->count)
+								<hr>
+							@endif
 				   		@endforeach
 				   	@else
 					   	<div class="text-danger text-center">
