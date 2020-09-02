@@ -29,7 +29,7 @@
                             @endforeach
                         @endif
                         <p><a href="{{route('budget.create')}}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Create a new budget</a></p>
-                        <!--p><a href="{{route('budget.link.form')}}"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;Invite user to an existing budget</a></p-->
+                        <p><a href="{{route('budget.link.form')}}"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;Invite user to an existing budget</a></p>
                       </div>
                     </div>
                 </div>
