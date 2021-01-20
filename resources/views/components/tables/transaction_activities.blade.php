@@ -18,6 +18,7 @@
             				<a href="{{ route('budget.show', [$transaction->budget]) }}" style="margin-left:8px;"><i class="fas fa-money-bill-wave"></i> View Budget</a>
             			</p>
             		</div>
+            		@if($transaction->activities->count() > 0)
 					<table class="table">
 			   			<thead>
 			   				<tr>
@@ -47,6 +48,10 @@
 			   			</tbody>
 			   		</table>
 		   			{{ $paginated_data->links() }}
+		   			@else
+		   				<hr>
+		   				<div style="padding:40px;"><h5 class="text-center">No Activity Logs for this Transaction.</h5></div>
+		   			@endif
 	   			</div>
 	   		</div>
 		</div>
