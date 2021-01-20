@@ -35,7 +35,7 @@
 	   								@if($data->changes && isset($data->changes['old']))
 		   								<td>
 		   									@foreach($data->changes['old'] as $key => $attribute)
-		   										<p>{{strtoupper($key)}} changed from <b>{{$attribute}}</b> to <b>{{$data->changes['old'][$key]}}</b>.</p>
+		   										<p>{{strtoupper($key)}} changed from <b>{{$attribute}}</b> to <b>{{$data->changes['attributes'][$key]}}</b>.</p>
 		   									@endforeach
 						                </td>
 					                @else
