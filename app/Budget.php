@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Budget extends Model
 {
+    use LogsActivity;
 
     public $fillable = ['description', 'months_for_projection', 'notes'];
+
+    protected static $logAttributes = ['transactions.description'];
 
     public function transactions()
     {

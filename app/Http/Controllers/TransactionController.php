@@ -60,6 +60,8 @@ class TransactionController extends Controller
 
         $transaction->save();
 
+        activity()->performedOn($budget)->log("Added {$transaction->description} transaction for {$transaction->formatted_amount}.");
+
         return redirect()->route('budget.show', [$budget])->with('status', 'Transaction created successfully!');
     }
 
@@ -114,6 +116,8 @@ class TransactionController extends Controller
 
         $transaction->save();
 
+        activity()->performedOn($budget)->log("Edited {$transaction->description} transaction for {$transaction->formatted_amount}.");
+
         return redirect()->route('budget.show', [$budget])->with('status', $request->description . ' was updated successfully!');
     }
 
@@ -123,17 +127,28 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Budget $budget, Transaction $transaction)
+    public function destroy(Request $request, Budget $budget, Transaction $transaction)
     {
+        activity()->performedOn($budget)->log("Deleted {$transaction->description} transaction for {$transaction->formatted_amount}.");
+
         $transaction->delete();
     }
 
-    public function duplicate(Budget $budget, Transaction $transaction)
+    public function duplicate(Request $request, Budget $budget, Transaction $transaction)
     {
         $new_transaction = $transaction->replicate();
 
         $new_transaction->save();
 
+        activity()->performedOn($budget)->log("Duplicated {$transaction->description} transaction for {$transaction->formatted_amount}.");
+
         return redirect()->route('budget.transaction.edit', [$budget, $new_transaction])->with('status', 'The transaction was duplicated successfully! Use the form to edit below.');;
+    }
+
+    public function activity(Request $request, Transaction $transaction)
+    {
+        $activities = $transaction->activities()->latest()->paginate(2);
+
+        return view('components.tables.transaction_activities', ['paginated_data' => $activities, 'transaction' => $transaction]);
     }
 }

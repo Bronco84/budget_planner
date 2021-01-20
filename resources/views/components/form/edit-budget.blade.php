@@ -15,7 +15,10 @@
 		<div class="card-body">
 			<h5>Edit Budget #{{$budget->id}}</h5>
 			<hr>
-			<p><a onclick="deleteBudget({{$budget->id}})" class="text-danger" style="cursor:pointer" >Delete this budget <i class="far fa-trash-alt"></i></a></p>
+			<p>
+				<a href="{{ route('budget.show', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-money-bill-wave"></i> View Budget</a>|
+				<a onclick="deleteBudget({{$budget->id}})" class="text-danger" style="cursor:pointer;margin-left:8px;" >Delete this budget <i class="far fa-trash-alt"></i></a>
+			</p>
 		     <form method="POST" action="/budget/{{$budget->id}}">
 		    	@method('PATCH')
 			    @csrf

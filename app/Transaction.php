@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Transaction extends Model
 {
 
+    use LogsActivity;
 
 	public $dates = [
 		'date'
@@ -15,6 +17,14 @@ class Transaction extends Model
 	public $include = [
 		'formatted_amount'
 	];
+
+    protected static $logAttributes = ['*'];
+
+    protected static $logOnlyDirty = true;
+
+    protected static $logAttributesToIgnore = [ 'updated_at'];
+    
+    protected static $submitEmptyLogs = false;
 
     /**
      * All of the relationships to be touched.
@@ -26,6 +36,7 @@ class Transaction extends Model
     public function budget(){
         return $this->belongsTo('App\Budget');
     }
+
     /**
      * Set the transaction's amount.
      *
