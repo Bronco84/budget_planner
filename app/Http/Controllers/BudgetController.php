@@ -95,6 +95,8 @@ class BudgetController extends Controller
 
     protected function addOccurance($transaction)
     {
+        $transaction->load('activities');
+
     	$this->occurances[$this->balanceDate->format('F') . ' ' . $this->balanceDate->format('Y')][$this->balanceDate->day][] = [
 			'transaction_detail' => $transaction,
 			'running_total' => $this->currentBalance = $this->currentBalance + $transaction->amount_in_cents    				

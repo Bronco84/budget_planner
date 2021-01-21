@@ -44,8 +44,10 @@
 											<div class="row">
 												<div class="col-6">
 													<span>{{$transaction['transaction_detail']['description']}}</span> <small>
-														<a href="{{ route('budget.transaction.edit', ['budget' => $budget, 'transaction' => $transaction['transaction_detail']['id']]) }}" style="margin-left:8px;margin-right:8px">edit <i class="far fa-edit"></i></a>| 
-														<a href="{{ route('transaction.activities', ['transaction' => $transaction['transaction_detail']['id']]) }}" style="margin-left:8px;">changes <i class="fas fa-history"></i></a>
+														<a href="{{ route('budget.transaction.edit', ['budget' => $budget, 'transaction' => $transaction['transaction_detail']['id']]) }}" style="margin-left:8px;margin-right:8px">edit <i class="far fa-edit"></i></a>
+														@if(count($transaction['transaction_detail']['activities']) > 0)
+															|<a href="{{ route('transaction.activities', ['transaction' => $transaction['transaction_detail']['id']]) }}" style="margin-left:8px;">changes <i class="fas fa-history"></i></a>
+														@endif
 													</small>
 												</div>
 												<div class="col-3">
@@ -69,7 +71,7 @@
 									</div>
 								</div>
 							</div>
-							@if($loop->iteration != $loop->count)
+							@if($loop->last)
 								<hr>
 							@endif
 				   		@endforeach

@@ -9,12 +9,11 @@
             			<h4>Transaction History</h4>
             			<hr>
             			<p><b>Description:</b> {{$transaction->description}}</p>
-            			<p><b>Created on:</b> {{$transaction->created_at->format('M-d-Y g:i A')}}</p>
             			<p><b>Created by:</b> {{$transaction->created_by}}</p>
             			<p><b>Account:</b> {{$transaction->account}}</p>
             			<p><b>Amount:</b> {{$transaction->formatted_amount}}</p>
             			<p>
-            				<a href="{{ route('budget.transaction.edit', [$transaction, $transaction->budget]) }}" style="margin-right:8px;"><i class="far fa-edit"></i> Edit Transaction</a>|
+            				<a href="{{ route('budget.transaction.edit', [$transaction->budget, $transaction]) }}" style="margin-right:8px;"><i class="far fa-edit"></i> Edit Transaction</a>|
             				<a href="{{ route('budget.show', [$transaction->budget]) }}" style="margin-left:8px;"><i class="fas fa-money-bill-wave"></i> View Budget</a>
             			</p>
             		</div>
