@@ -23,15 +23,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::resource('budget', 'BudgetController');
+	Route::resources([
+		'user' => UserController::class,
+		'budget' => BudgetController::class,
+		'budget.account-balance' => AccountBalanceController::class,
+		'budget.transaction' => TransactionController::class,
+	]);
 
 	Route::post('budget-link', 'BudgetLinkController@store_link')->name('budget.link.post');
 
 	Route::get('budget-link/{budget?}', 'BudgetLinkController@show_link_form')->name('budget.link.form');
-
-	Route::resource('budget.account-balance', 'AccountBalanceController');
-
-	Route::resource('budget.transaction', 'TransactionController');
 
 	Route::get('transaction/{transaction}/activity', 'TransactionController@activity')->name('transaction.activities');
 

@@ -7,11 +7,6 @@
             <div class="card">
                 <div class="card-header">{{ __('Budgets') }}</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
                     <div class="row">
                       <div class="col-12">
                         @if ($user->budgets->count() > 0)
