@@ -147,7 +147,7 @@ class TransactionController extends Controller
 
     public function activity(Request $request, Transaction $transaction)
     {
-        $activities = $transaction->activities()->latest()->paginate(2);
+        $activities = $transaction->activities()->latest()->paginate();
 
         return view('components.tables.transaction_activities', ['paginated_data' => $activities, 'transaction' => $transaction]);
     }
