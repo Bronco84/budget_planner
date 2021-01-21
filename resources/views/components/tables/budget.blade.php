@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-				<div class="card-header">
+				<div class="card-header" style="background:#CCC">
 					<div>
 			    	<h4 class="text-center" style="margin-bottom:15px;">{{$budget->description}}<small style="font-size:15px;"><a href="{{ route('budget.edit', [$budget]) }}" style="margin-left:8px;">edit <i class="far fa-edit"></i></a></small></h4>
 			    	<div style="background:#FFF;border-radius: 5px;border:1px solid #CCC;padding:15px;">
