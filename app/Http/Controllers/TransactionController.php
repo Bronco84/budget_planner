@@ -103,7 +103,6 @@ class TransactionController extends Controller
         ]);
 
         $transaction->description = $request->description;
-        $transaction->created_by = $request->user()->name;
         $transaction->account = $request->account;
         $transaction->category = $request->category;
         $transaction->frequency = $request->frequency;
