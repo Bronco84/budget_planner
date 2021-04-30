@@ -43,7 +43,7 @@
 						           		<td>{{$transaction->date || $transaction->day_of_month ? '' : $transaction->day_of_week}}</td>
 						           		<td>{{$transaction->day_of_month}}</td>
 						                <td class="{{$transaction->amount_in_cents > 0 ? 'text-success' : 'text-danger'}}">{{$transaction->formatted_amount}}</td>
-						                <td class="text-right">
+						                <td class="text-right" style="white-space: nowrap">
 						                	<a href="{{ route('budget.transaction.edit', [$budget, $transaction]) }}" style="margin-right:8px;">edit</a> | 
 						                	<a onclick="deleteTransaction({{$transaction->id}})" style="margin-left:8px;cursor:pointer" class="text-danger">delete</a>
 						                </td>
