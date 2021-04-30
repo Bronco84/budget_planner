@@ -11,7 +11,7 @@ class Budget extends Model
 
     public $fillable = ['description', 'months_for_projection', 'notes'];
 
-    protected static $logAttributes = ['transactions.description'];
+    //protected static $logAttributes = ['transactions.description'];
 
     public function transactions()
     {
