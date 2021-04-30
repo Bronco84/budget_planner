@@ -11,7 +11,8 @@ class Transaction extends Model
     use LogsActivity;
 
 	public $dates = [
-		'date'
+		'date',
+        'end_date'
 	];
 
 	public $include = [

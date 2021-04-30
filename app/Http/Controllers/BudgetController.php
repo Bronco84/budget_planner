@@ -65,6 +65,11 @@ class BudgetController extends Controller
 
     		foreach($this->transactions as $transaction)
     		{
+
+                if($transaction->end_date && $transaction->end_date->lt($this->balanceDate)){
+                    continue;                    
+                }
+
     			if($transaction->date && $transaction->date->isSameDay($this->balanceDate)){
     				$this->addOccurance($transaction);
     			}else if($transaction->frequency == 'Monthly' && $transaction->day_of_month == $day_of_month){

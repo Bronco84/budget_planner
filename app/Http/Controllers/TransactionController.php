@@ -112,6 +112,7 @@ class TransactionController extends Controller
         $transaction->amount_in_cents = $request->amount;
         $transaction->parity = $request->parity;
         $transaction->notes = $request->notes;
+        $transaction->end_date = $request->end_date;
 
         $transaction->save();
 
