@@ -41,8 +41,8 @@ class TransactionController extends Controller
         $request->validate([
             'description' => 'required|string',
             'amount' => 'required|numeric',
-            'start_date' => 'date|nullable',
-            'end_date' => 'date|nullable',
+            'start_date' => 'sometimes|date|nullable',
+            'end_date' => 'sometimes|date|nullable',
         ]);
 
         $transaction = new Transaction;
