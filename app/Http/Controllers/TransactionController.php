@@ -42,6 +42,7 @@ class TransactionController extends Controller
             'description' => 'required|string',
             'amount' => 'required|numeric',
             'start_date' => 'date',
+            'end_date' => 'date',
         ]);
 
         $transaction = new Transaction;
@@ -52,6 +53,8 @@ class TransactionController extends Controller
         $transaction->category = $request->category;
         $transaction->frequency = $request->frequency;
         $transaction->date = $request->date;
+        $transaction->start_date = $request->start_date;
+        $transaction->end_date = $request->end_date;
         $transaction->day_of_week = $request->day_of_week;
         $transaction->day_of_month = $request->day_of_month;
         $transaction->amount_in_cents = $request->amount;
@@ -112,6 +115,7 @@ class TransactionController extends Controller
         $transaction->amount_in_cents = $request->amount;
         $transaction->parity = $request->parity;
         $transaction->notes = $request->notes;
+        $transaction->start_date = $request->start_date;
         $transaction->end_date = $request->end_date;
 
         $transaction->save();
