@@ -74,6 +74,10 @@
 			    	<input class="form-control" type="text" name="date" value="{{ $transaction->date ? $transaction->date->toFormattedDateString() : '' }}"/>
 			   	</div>	
 			   	<div class="form-group">
+			    	<label>Start Date</label>
+			    	<input class="form-control" type="text" name="start_date" value="{{ $transaction->start_date ? $transaction->start_date->toFormattedDateString() : '' }}"/>
+			   	</div>				   	
+			   	<div class="form-group">
 			    	<label>End Date (leave blank if indefinite)</label>
 			    	<input class="form-control" type="text" name="end_date" value="{{ $transaction->end_date ? $transaction->end_date->toFormattedDateString() : '' }}"/>
 			   	</div>			   	

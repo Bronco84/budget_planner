@@ -66,6 +66,10 @@ class BudgetController extends Controller
     		foreach($this->transactions as $transaction)
     		{
 
+                if($transaction->start_date && $transaction->start_date->gt($this->balanceDate)){
+                    continue;                    
+                }                
+
                 if($transaction->end_date && $transaction->end_date->lt($this->balanceDate)){
                     continue;                    
                 }

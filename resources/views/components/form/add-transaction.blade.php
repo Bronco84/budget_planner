@@ -61,6 +61,10 @@
 			    	<input class="form-control" type="date" name="date" value="{{ old('date') }}"/>
 			   	</div>	
 			   	<div class="form-group">
+			    	<label>Start Date</label>
+			    	<input class="form-control" type="date" name="start_date" value="{{ old('start_date') }}"/>
+			   	</div>
+			   	<div class="form-group">
 			    	<label>End Date (leave blank if indefinite)</label>
 			    	<input class="form-control" type="date" name="end_date" value="{{ old('end_date') }}"/>
 			   	</div>			   	

@@ -12,6 +12,7 @@ class Transaction extends Model
 
 	public $dates = [
 		'date',
+        'start_date'
         'end_date'
 	];
 
