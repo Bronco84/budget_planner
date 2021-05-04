@@ -34,7 +34,20 @@
 	   								@if($data->changes && isset($data->changes['old']))
 		   								<td>
 		   									@foreach($data->changes['old'] as $key => $attribute)
-		   										<p>{{strtoupper($key)}} changed from <b>{{$attribute}}</b> to <b>{{$data->changes['attributes'][$key]}}</b>.</p>
+		   										<p>
+		   											<span>{{strtoupper($key)}} changed from </span>
+		   											@if($attribute)
+		   												<b>{{is_numeric($attribute) ? number_format(($attribute /100), 2, '.', ',') : $attribute}}</b>
+		   											@else
+		   												<b>...</b>
+		   											@endif
+		   											<span> to </span>
+		   											@if($data->changes['attributes'][$key])
+		   												<b>{{is_numeric($data->changes['attributes'][$key]) ? number_format(($data->changes['attributes'][$key] /100), 2, '.', ',') : $data->changes['attributes'][$key]}}</b>
+		   											@else
+		   												<b>...</b>
+		   											@endif
+		   										</p>
 		   									@endforeach
 						                </td>
 					                @else
