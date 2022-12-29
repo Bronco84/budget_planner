@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-xl">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -20,8 +20,8 @@
 				</div>
 				<div class="card-body" style="padding-bottom:50px;">
 					<p>
-						<a href="{{ route('budget.transaction.create', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> | 
-						<a href="{{ route('budget.transaction.index', [$budget]) }}" style="margin-left:8px;margin-right:8px;"><i class="fas fa-money-bill-wave"></i> View All Transactions</a> | 
+						<a href="{{ route('budget.transaction.create', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> |
+						<a href="{{ route('budget.transaction.index', [$budget]) }}" style="margin-left:8px;margin-right:8px;"><i class="fas fa-money-bill-wave"></i> View All Transactions</a> |
 						<a href="{{ route('budget.link.form', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-link"></i> Share this Budget</a>
 					</p>
 					<hr>
@@ -39,7 +39,7 @@
 									<div class="col-10">
 										@foreach($transactions as $transaction)
 											@php
-												$net = $transaction['transaction_detail']['amount_in_cents'] + $net; 
+												$net = $transaction['transaction_detail']['amount_in_cents'] + $net;
 											@endphp
 											<div class="row">
 												<div class="col-6">
