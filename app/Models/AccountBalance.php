@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +21,7 @@ class AccountBalance extends Model
     protected $touches = ['budget'];
 
     public function budget(){
-        return $this->belongsTo('App\Budget');
+        return $this->belongsTo(Budget::class);
     }
 
      /**

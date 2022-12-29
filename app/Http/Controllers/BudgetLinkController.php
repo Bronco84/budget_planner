@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Budget;
-use App\User;
+use App\Models\Budget;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 
 class BudgetLinkController extends Controller
@@ -35,14 +35,14 @@ class BudgetLinkController extends Controller
 		        'exists:budgets,id',
 		        'required'
 		    ]
-    	], 
+    	],
     	[
     		'budget_id.unique' => "This budget has already been linked to {$request->email}."
     	]);
 
     	$budget = Budget::find($request->budget_id);
     	$user->linked_budgets()->attach($budget);
-    	
+
     	return back()->with('status', 'Budget linked successfully!');
 
     }

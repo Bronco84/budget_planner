@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaction;
-use App\Budget;
+use App\Models\Transaction;
+use App\Models\Budget;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller

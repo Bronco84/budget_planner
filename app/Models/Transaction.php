@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Transaction extends Model
 {
@@ -20,14 +21,6 @@ class Transaction extends Model
 		'formatted_amount'
 	];
 
-    protected static $logAttributes = ['*'];
-
-    protected static $logOnlyDirty = true;
-
-    protected static $logAttributesToIgnore = [ 'updated_at'];
-    
-    protected static $submitEmptyLogs = false;
-
     /**
      * All of the relationships to be touched.
      *
@@ -35,8 +28,17 @@ class Transaction extends Model
      */
     protected $touches = ['budget'];
 
+    public function getActivitylogOptions(): LogOptions
+    {
+
+        return LogOptions::defaults()
+        ->logOnlyDirty()
+        ->dontSubmitEmptyLogs()
+        ->logExcept(['updated_at']);
+    }
+
     public function budget(){
-        return $this->belongsTo('App\Budget');
+        return $this->belongsTo(Budget::class);
     }
 
     /**

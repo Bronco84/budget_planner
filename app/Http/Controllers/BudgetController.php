@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Transaction;
-use App\Budget;
+use App\Models\Transaction;
+use App\Models\Budget;
 use Illuminate\Http\Request;
 
 class BudgetController extends Controller
@@ -12,7 +12,7 @@ class BudgetController extends Controller
 	public $occurances = [];
 
 	public $originalBalanceDate;
-	
+
 	public $balanceDate;
 
 	public $transactions;
@@ -47,7 +47,7 @@ class BudgetController extends Controller
 
     	$this->originalBalance = $accountBalance->balance_in_cents;
 
-    	$this->currentBalance = $accountBalance->balance_in_cents; 
+    	$this->currentBalance = $accountBalance->balance_in_cents;
 
     	$this->balanceDate = $accountBalance->as_of_date;
 
@@ -67,11 +67,11 @@ class BudgetController extends Controller
     		{
 
                 if($transaction->start_date && $transaction->start_date->gt($this->balanceDate)){
-                    continue;                    
-                }                
+                    continue;
+                }
 
                 if($transaction->end_date && $transaction->end_date->lt($this->balanceDate)){
-                    continue;                    
+                    continue;
                 }
 
     			if($transaction->date && $transaction->date->isSameDay($this->balanceDate)){
@@ -108,7 +108,7 @@ class BudgetController extends Controller
 
     	$this->occurances[$this->balanceDate->format('F') . ' ' . $this->balanceDate->format('Y')][$this->balanceDate->day][] = [
 			'transaction_detail' => $transaction,
-			'running_total' => $this->currentBalance = $this->currentBalance + $transaction->amount_in_cents    				
+			'running_total' => $this->currentBalance = $this->currentBalance + $transaction->amount_in_cents
 		];
     }
 

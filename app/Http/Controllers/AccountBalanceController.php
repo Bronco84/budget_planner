@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\AccountBalance;
-use App\Budget;
+use App\Models\AccountBalance;
+use App\Models\Budget;
 use Illuminate\Http\Request;
 
 class AccountBalanceController extends Controller

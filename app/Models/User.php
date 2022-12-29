@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,12 +39,12 @@ class User extends Authenticatable
 
     public function budgets()
     {
-        return $this->hasMany('App\Budget', 'created_by');
+        return $this->hasMany(Budget::class, 'created_by');
     }
 
     public function linked_budgets()
     {
-        return $this->belongsToMany('App\Budget');
+        return $this->belongsToMany(Budget::class);
     }
 
 }
