@@ -8,15 +8,7 @@ use Illuminate\Http\Request;
 
 class AccountBalanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,6 +17,7 @@ class AccountBalanceController extends Controller
      */
     public function create(Budget $budget)
     {
+        $this->authorize('create', [ AccountBalance::class, $budget ]);
 
         $account_balance = $budget->account_balances()->latest()->first();
         return view('components.form.add-account-balance')->with(compact('budget', 'account_balance'));
@@ -38,6 +31,8 @@ class AccountBalanceController extends Controller
      */
     public function store(Budget $budget, Request $request)
     {
+        $this->authorize('create', [ AccountBalance::class, $budget ]);
+
         $account_balance = new AccountBalance;
 
         $account_balance->description = $request->description;
@@ -54,35 +49,24 @@ class AccountBalanceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\AccountBalance  $accountBalance
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AccountBalance $accountBalance)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AccountBalance  $accountBalance
+     * @param  \App\AccountBalance  $account_balance
      * @return \Illuminate\Http\Response
      */
-    public function edit(AccountBalance $accountBalance)
+    public function edit(Budget $budget, AccountBalance $account_balance)
     {
-        return view('components.form.add-account-balance');
+        return abort(404);//view('components.form.add-account-balance');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AccountBalance  $accountBalance
+     * @param  \App\AccountBalance  $account_balance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AccountBalance $accountBalance)
+    public function update(Request $request, AccountBalance $account_balance)
     {
         //
     }
@@ -90,10 +74,10 @@ class AccountBalanceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AccountBalance  $accountBalance
+     * @param  \App\AccountBalance  $account_balance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AccountBalance $accountBalance)
+    public function destroy(AccountBalance $account_balance)
     {
         //
     }

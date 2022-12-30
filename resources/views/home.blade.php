@@ -9,22 +9,16 @@
                 <div class="card-body">
                     <div class="row">
                       <div class="col-12">
-                        @if ($user->budgets->count() > 0)
-                            @foreach($user->budgets as $budget)
-                                <a href="{{route('budget.show', [$budget])}}"><i class="fas fa-list-alt"></i>&nbsp;&nbsp;&nbsp;{{$budget->description}}</a> (Created by you) <a class="float-right" href="{{route('budget.edit', [$budget])}}">edit</a><br>
-                                <small><i class="far fa-clock"></i> Last updated {{$budget->updated_at->format('F d - g:i A')}}</small>
-                                <hr>
-                            @endforeach
-                        @endif
                         @if ($user->linked_budgets->count() > 0)
                             @foreach($user->linked_budgets as $budget)
-                                <a href="{{route('budget.show', [$budget])}}"><i class="fas fa-list-alt"></i>&nbsp;&nbsp;&nbsp;{{$budget->description}}</a> (Linked to you by {{$budget->created_by_user->name}})<br>
+                                <a href="{{route('budget.show', [$budget])}}"><i class="fas fa-list-alt"></i>&nbsp;&nbsp;&nbsp;{{$budget->description}}</a>
+                                @if($budget->created_by_user->id != $user->id )(Linked to you by {{$budget->created_by_user->name}})@endif<br>
                                 <small><i class="far fa-clock"></i> Last updated {{$budget->updated_at->format('F d - g:i A')}}</small>
                                 <hr>
                             @endforeach
                         @endif
                         <p><a href="{{route('budget.create')}}"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Create a new budget</a></p>
-                        <p><a href="{{route('budget.link.form')}}"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;Invite user to an existing budget</a></p>
+                        @if ($user->linked_budgets->count() > 0)<p><a href="{{route('budget-link.create')}}"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;Invite user to an existing budget</a></p>@endif
                       </div>
                     </div>
                 </div>

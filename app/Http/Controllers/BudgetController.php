@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class BudgetController extends Controller
 {
 
+     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Budget::class, 'budget');
+    }
+
 	public $occurances = [];
 
 	public $originalBalanceDate;
@@ -139,6 +149,8 @@ class BudgetController extends Controller
 
         $budget->save();
 
+        $request->user()->linked_budgets()->attach($budget);
+
         return redirect()->route('budget.show', [$budget]);
     }
 
@@ -177,6 +189,7 @@ class BudgetController extends Controller
     {
         $budget->transactions()->delete();
         $budget->account_balances()->delete();
+        $budget->connected_budgets()->detach();
         $budget->delete();
     }
 

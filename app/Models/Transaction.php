@@ -11,6 +11,10 @@ class Transaction extends Model
 
     use LogsActivity;
 
+    public $guarded = ['created_at', 'updated_at', 'id'];
+
+    protected static $recordEvents = ['updated'];
+
 	public $dates = [
 		'date',
         'start_date',
@@ -32,9 +36,8 @@ class Transaction extends Model
     {
 
         return LogOptions::defaults()
-        ->logOnlyDirty()
-        ->dontSubmitEmptyLogs()
-        ->logExcept(['updated_at']);
+        ->logUnguarded()
+        ->logOnlyDirty();
     }
 
     public function budget(){

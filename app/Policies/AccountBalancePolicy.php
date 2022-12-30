@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
-use App\AccountBalance;
-use App\User;
+use App\Models\AccountBalance;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class AccountBalancePolicy
 {
@@ -18,7 +19,7 @@ class AccountBalancePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -39,9 +40,9 @@ class AccountBalancePolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**
@@ -51,9 +52,9 @@ class AccountBalancePolicy
      * @param  \App\AccountBalance  $accountBalance
      * @return mixed
      */
-    public function update(User $user, AccountBalance $accountBalance)
+    public function update(User $user, Budget $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**

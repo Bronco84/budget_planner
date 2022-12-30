@@ -47,4 +47,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Budget::class);
     }
 
+    public function hasBudget($budget) {
+        return $this->linked_budgets->contains($budget);
+    }
+
 }

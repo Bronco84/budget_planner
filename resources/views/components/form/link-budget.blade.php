@@ -5,16 +5,13 @@
 		<div class="card-body">
 			<h5>Link Budget</h5>
 			<hr>
-			@if($budget)
-				<p><a href="{{ route('budget.show', [$budget]) }}">Return to Budget</a></p>
-			@endif
 		     <form method="POST" action="/budget-link">
 			    @csrf
 			    <div class="form-group">
 			    	<label>Budget*</label>
 			    	<select class="form-control" name="budget_id">
 			    		@foreach($user->budgets as $user_budget)
-			    			<option {{$budget && $budget->id == $user_budget->id ? 'selected' : ''}} value="{{$user_budget->id}}">{{$user_budget->description}}</option>
+			    			<option value="{{$user_budget->id}}">{{$user_budget->description}}</option>
 			    		@endforeach
 			    	</select>
 			    </div>

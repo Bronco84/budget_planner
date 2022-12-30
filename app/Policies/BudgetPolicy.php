@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Budget;
-use App\User;
+use App\Models\Budget;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BudgetPolicy
@@ -18,7 +18,7 @@ class BudgetPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -30,7 +30,7 @@ class BudgetPolicy
      */
     public function view(User $user, Budget $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**
@@ -41,7 +41,7 @@ class BudgetPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class BudgetPolicy
      */
     public function update(User $user, Budget $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**
@@ -65,7 +65,7 @@ class BudgetPolicy
      */
     public function delete(User $user, Budget $budget)
     {
-        //
+        return $user->id == $budget->created_by_user->id;
     }
 
     /**

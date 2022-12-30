@@ -22,7 +22,7 @@
 					<p>
 						<a href="{{ route('budget.transaction.create', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> |
 						<a href="{{ route('budget.transaction.index', [$budget]) }}" style="margin-left:8px;margin-right:8px;"><i class="fas fa-money-bill-wave"></i> View All Transactions</a> |
-						<a href="{{ route('budget.link.form', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-link"></i> Share this Budget</a>
+						<a href="{{ route('budget-link.create', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-link"></i> Share this Budget</a>
 					</p>
 					<hr>
 					@if(count($occurances) > 0)
@@ -77,7 +77,7 @@
 				   		@endforeach
 				   	@else
 					   	<div class="text-danger text-center">
-					   		<p>No transactions found for this period!</p>
+					   		<p style="padding-top:15px;">No transactions found for this period!</p>
 					   	</div>
 				   	@endif
 				</div>

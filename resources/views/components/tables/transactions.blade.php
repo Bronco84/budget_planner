@@ -19,7 +19,7 @@
 				</div>
 				<div class="card-body">
 					<p><a href="{{ route('budget.transaction.create', [$budget]) }}" style="margin-right:8px;"><i class="fas fa-plus-circle"></i> Add New Transaction</a> | <a href="{{ route('budget.show', [$budget]) }}" style="margin-left:8px;"><i class="fas fas fa-money-bill-wave"></i> View Budget</a></p>
-					@if(count($transactions) > 0)
+					@if(count($budget->transactions) > 0)
 					    <table class="table table-striped table-sm">
 					        <thead>
 					            <tr style="padding:15px;">
@@ -34,7 +34,7 @@
 					            </tr>
 					        </thead>
 					        <tbody>
-					        	@foreach ($transactions as $transaction)
+					        	@foreach ($budget->transactions as $transaction)
 						            <tr>
 						                <td>{{$transaction->description}}</td>
 						           		<td>{{$transaction->created_by}}</td>
@@ -44,7 +44,10 @@
 						           		<td>{{$transaction->day_of_month}}</td>
 						                <td class="{{$transaction->amount_in_cents > 0 ? 'text-success' : 'text-danger'}}">{{$transaction->formatted_amount}}</td>
 						                <td class="text-right" style="white-space: nowrap">
-						                	<a href="{{ route('budget.transaction.edit', [$budget, $transaction]) }}" style="margin-right:8px;">edit</a> | 
+                                            @if(count($transaction->activities) > 0)
+                                                <a href="{{ route('transaction.activities', ['transaction' => $transaction->id]) }}" style="margin-left:8px;">changes <i class="fas fa-history"></i></a> |
+                                            @endif
+						                	<a href="{{ route('budget.transaction.edit', [$budget, $transaction]) }}" style="margin-right:8px;">edit</a> |
 						                	<a onclick="deleteTransaction({{$transaction->id}})" style="margin-left:8px;cursor:pointer" class="text-danger">delete</a>
 						                </td>
 						            </tr>

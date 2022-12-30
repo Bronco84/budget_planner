@@ -19,8 +19,6 @@ class CreateBudgetUserTable extends Migration
             $table->integer('user_id');
             $table->timestamps();
         });
-
-        Schema::dropIfExists('groups');
     }
 
     /**

@@ -13,11 +13,11 @@
 			    </div>
 			    <div class="form-group">
 			    	<label>Months of Projection* (Added to month of latest balance)</label>
-			    	<input required placeholder="Short description for budget" class="form-control" type="number" max="5" min="1" name="months_for_projection" value="{{ old('months_for_projection') }}"/>
+			    	<input required placeholder="Number of months to project" class="form-control" type="number" max="5" min="1" name="months_for_projection" value="{{ old('months_for_projection') }}"/>
 			    </div>
 				<div class="form-group">
 			    	<label>Notes</label>
-			    	<textarea class="form-control" name="notes" placeholder="Notes about the transaction">{{ old('notes') }}</textarea>
+			    	<textarea class="form-control" name="notes" placeholder="Notes about the balance">{{ old('notes') }}</textarea>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">Submit</button>
 				@if ($errors->any())

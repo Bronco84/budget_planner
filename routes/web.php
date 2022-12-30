@@ -26,13 +26,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resources([
 		'user' => UserController::class,
 		'budget' => BudgetController::class,
-		'budget.account-balance' => AccountBalanceController::class,
 		'budget.transaction' => TransactionController::class,
 	]);
 
-	Route::post('budget-link', 'BudgetLinkController@store_link')->name('budget.link.post');
+    Route::resource('budget.account-balance', AccountBalanceController::class)->only(['create', 'store']);
 
-	Route::get('budget-link/{budget?}', 'BudgetLinkController@show_link_form')->name('budget.link.form');
+    Route::resource('budget-link', BudgetLinkController::class)->only(['create', 'store']);
 
 	Route::get('transaction/{transaction}/activity', 'TransactionController@activity')->name('transaction.activities');
 

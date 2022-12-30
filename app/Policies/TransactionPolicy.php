@@ -2,8 +2,9 @@
 
 namespace App\Policies;
 
-use App\Budget;
-use App\User;
+use App\Models\Budget;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TransactionPolicy
@@ -16,9 +17,9 @@ class TransactionPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user, Transaction $transaction)
     {
-        //
+        return $user->hasBudget($transaction->budget);
     }
 
     /**
@@ -28,9 +29,9 @@ class TransactionPolicy
      * @param  \App\Budget  $budget
      * @return mixed
      */
-    public function view(User $user, Budget $budget)
+    public function view(User $user, Transaction $transaction)
     {
-        //
+        return $user->hasBudget($transaction->budget);
     }
 
     /**
@@ -39,9 +40,9 @@ class TransactionPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Budget $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**
@@ -53,7 +54,7 @@ class TransactionPolicy
      */
     public function update(User $user, Budget $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**
@@ -65,7 +66,7 @@ class TransactionPolicy
      */
     public function delete(User $user, Budget $budget)
     {
-        //
+        return $user->hasBudget($budget);
     }
 
     /**

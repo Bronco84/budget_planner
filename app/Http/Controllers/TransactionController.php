@@ -15,8 +15,9 @@ class TransactionController extends Controller
      */
     public function index(Budget $budget)
     {
-        $transactions = $budget->transactions;
-        return view('components.tables.transactions')->with(compact('budget', 'transactions'));
+        $this->authorize('view', [ Transaction::class, $budget ]);
+
+        return view('components.tables.transactions')->with(compact('budget'));
     }
 
     /**
@@ -26,7 +27,9 @@ class TransactionController extends Controller
      */
     public function create(Budget $budget)
     {
-        return view('components.form.add-transaction')->with('budget', $budget);
+        $this->authorize('create', [ Transaction::class, $budget ]);
+
+        return view('components.form.add-transaction')->with(compact('budget'));
     }
 
     /**
@@ -37,6 +40,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request, Budget $budget)
     {
+        $this->authorize('create', [ Transaction::class, $budget ]);
 
         $request->validate([
             'description' => 'required|string',
@@ -76,6 +80,8 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
+        $this->authorize('view', [ Transaction::class, $budget ]);
+
         return $transaction;
     }
 
@@ -87,6 +93,8 @@ class TransactionController extends Controller
      */
     public function edit(Budget $budget, Transaction $transaction)
     {
+        $this->authorize('update', [ Transaction::class, $budget ]);
+
         return view('components.form.edit-transaction')->with(compact('budget', 'transaction'));
     }
 
@@ -99,6 +107,8 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Budget $budget, Transaction $transaction)
     {
+        $this->authorize('update', [ Transaction::class, $budget ]);
+
         $request->validate([
             'description' => 'required|string',
             'amount' => 'required|numeric',
@@ -134,6 +144,8 @@ class TransactionController extends Controller
      */
     public function destroy(Request $request, Budget $budget, Transaction $transaction)
     {
+        $this->authorize('delete', [ Transaction::class, $budget ]);
+
         activity()->performedOn($budget)->log("Deleted {$transaction->description} transaction for {$transaction->formatted_amount}.");
 
         $transaction->delete();
@@ -141,6 +153,8 @@ class TransactionController extends Controller
 
     public function duplicate(Request $request, Budget $budget, Transaction $transaction)
     {
+        $this->authorize('update', [ Transaction::class, $budget ]);
+
         $new_transaction = $transaction->replicate();
 
         $new_transaction->save();
@@ -152,6 +166,8 @@ class TransactionController extends Controller
 
     public function activity(Request $request, Transaction $transaction)
     {
+        $this->authorize('view', [ Transaction::class, $transaction ]);
+
         $activities = $transaction->activities()->latest()->paginate();
 
         return view('components.tables.transaction_activities', ['paginated_data' => $activities, 'transaction' => $transaction]);
