@@ -17,9 +17,9 @@ class TransactionPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user, Transaction $transaction)
+    public function viewAny(User $user, Budget $budget)
     {
-        return $user->hasBudget($transaction->budget);
+        return $user->hasBudget($budget);
     }
 
     /**

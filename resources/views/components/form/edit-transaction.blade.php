@@ -16,7 +16,9 @@
 			<h5>Edit Transaction #{{$transaction->id}}</h5>
 			<hr>
 			<p>
-				<a href="{{ route('budget.show', [$budget]) }}">Return to Budget</a> | <a href="{{ route('budget.transaction.duplicate', [$budget, $transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a> | <a onclick="deleteTransaction()" class="text-danger">Delete this transaction <i class="far fa-trash-alt"></i></a>
+				<a href="{{ route('budget.show', [$budget]) }}">Return to Budget</a> |
+                <a href="{{ route('budget.transaction.duplicate', [$budget, $transaction]) }}">Duplicate this transaction <i class="far fa-copy"></i></a> |
+                <a onclick="deleteTransaction()" style="cursor:pointer" class="text-danger">Delete this transaction <i class="far fa-trash-alt"></i></a>
 			</p>
 		    <form method="POST" action="{{route('budget.transaction.update', [$budget, $transaction])}}">
 		    	@method('PATCH')
@@ -35,7 +37,7 @@
 			    </div>
 			   	<div class="form-group">
 			    	<label>Account</label>
-			    	<input class="form-control" placeholder="Account used to pay for or receive deposit" type="account" name="account" value="{{ $transaction->account }}"/>		    
+			    	<input class="form-control" placeholder="Account used to pay for or receive deposit" type="account" name="account" value="{{ $transaction->account }}"/>
 				</div>
 				<div class="form-group">
 					<label>Frequency</label>
@@ -64,7 +66,7 @@
 			    		<option>Even</option>
 			    		<option>Odd</option>
 			    	</select>
-			   	</div>				
+			   	</div>
 			   	<div class="form-group">
 			    	<label>Day of Month (if monthly)</label>
 			    	<input class="form-control" type="number" name="day_of_month" value="{{ $transaction->day_of_month }}" min="1" max="31"/>
@@ -72,15 +74,15 @@
 			   	<div class="form-group">
 			    	<label>Date (if transaction is not recurring)</label>
 			    	<input class="form-control" type="text" name="date" value="{{ $transaction->date ? $transaction->date->toFormattedDateString() : '' }}"/>
-			   	</div>	
+			   	</div>
 			   	<div class="form-group">
 			    	<label>Start Date</label>
 			    	<input class="form-control" type="text" name="start_date" value="{{ $transaction->start_date ? $transaction->start_date->toFormattedDateString() : '' }}"/>
-			   	</div>				   	
+			   	</div>
 			   	<div class="form-group">
 			    	<label>End Date (leave blank if indefinite)</label>
 			    	<input class="form-control" type="text" name="end_date" value="{{ $transaction->end_date ? $transaction->end_date->toFormattedDateString() : '' }}"/>
-			   	</div>			   	
+			   	</div>
 				<div class="form-group">
 			    	<label>Notes</label>
 			    	<textarea class="form-control" name="notes" placeholder="Notes about the transaction">{{ $transaction->notes }}</textarea>

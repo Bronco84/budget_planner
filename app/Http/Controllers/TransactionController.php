@@ -15,7 +15,7 @@ class TransactionController extends Controller
      */
     public function index(Budget $budget)
     {
-        $this->authorize('view', [ Transaction::class, $budget ]);
+        $this->authorize('view', [ Budget::class, $budget ]);
 
         return view('components.tables.transactions')->with(compact('budget'));
     }
@@ -80,7 +80,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        $this->authorize('view', [ Transaction::class, $budget ]);
+        $this->authorize('view', [ Transaction::class, $transaction ]);
 
         return $transaction;
     }
