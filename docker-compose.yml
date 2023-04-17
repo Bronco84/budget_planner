@@ -1,0 +1,56 @@
+version: '3.9'
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      args:
+        RUN_MIGRATIONS: ${RUN_MIGRATIONS:-false}
+    container_name: budget_latest
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: laravel
+      DB_PASSWORD: secret
+    networks:
+      - budget-network
+  db:
+    image: mysql:8.0
+    container_name: budget_db
+    restart: unless-stopped
+    environment:
+      #MYSQL_ROOT_PASSWORD: 'ZDCjrSaNRYfB76Q9GnEmbZUmEw6C8vBfwBBKjg5BpupzE9VQyUTP6CdCqjEcBP5E'
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+    ports:
+      - '3306:3306'
+    volumes:
+      - budget_db_data:/var/lib/mysql
+    networks:
+      - budget-network
+  nginx:
+    image: nginx:latest
+    container_name: budget_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./Docker/nginx/default.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+    networks:
+      - budget-network
+volumes:
+  budget_db_data:
+
+networks:
+  budget-network:
+    driver: bridge

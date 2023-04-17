@@ -37,7 +37,7 @@ class Budget extends Model
         return $this->hasMany(AccountBalance::class);
     }
 
-    public function connected_budgets()
+    public function connected_users()
     {
         return $this->belongsToMany(User::class);
     }

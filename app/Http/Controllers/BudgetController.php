@@ -189,7 +189,7 @@ class BudgetController extends Controller
     {
         $budget->transactions()->delete();
         $budget->account_balances()->delete();
-        $budget->connected_budgets()->detach();
+        $budget->connected_users()->detach();
         $budget->delete();
     }
 

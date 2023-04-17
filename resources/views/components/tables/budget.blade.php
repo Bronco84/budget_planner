@@ -11,6 +11,16 @@
 			    	<div><b>Current Date:</b> {{date('F d, Y')}}</div>
 			    	<div><b>View:</b> {{count($occurances)}} Month Forecast</div>
 			    	<div><b>Last Checking Account Balance:</b> ${{$account_balance/100}} ({{$account_balance_date->format('F d, Y')}})<small><a href="{{ route('budget.account-balance.create', [$budget]) }}" style="margin-left:8px;"><i class="fas fa-plus-circle"></i> add new balance</a></small></div>
+                    <div>Linked to:</div>
+                        <ul>
+                            @foreach($budget->connected_users as $user)
+                                @if($user->id === $budget->created_by)
+                                    <li>{{$user->name }} (Budget Owner)</li>
+                                @else
+                                    <li>{{ $user->name }}</li>
+                                @endif
+                            @endforeach
+                        </ul>
 			    	@if($budget->activities->count() > 0)
 				    	<p><b>Last 5 Events:</b></p>
 					   	@include('components.tables.budget_activities', ['activities' => $budget->activities()->latest()->take(5)->get()])
