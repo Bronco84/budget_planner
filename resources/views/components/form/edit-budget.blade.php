@@ -28,7 +28,7 @@
 			    </div>
 			    <div class="form-group">
 			    	<label>Months of Projection* (Added to month of latest balance)</label>
-			    	<input required placeholder="Number of months to use for forcasting balance" class="form-control" type="number" max="5" min="1" name="months_for_projection" value="{{ $budget->months_for_projection }}"/>
+			    	<input required placeholder="Number of months to use for forcasting balance" class="form-control" type="number" max="18" min="1" name="months_for_projection" value="{{ $budget->months_for_projection }}"/>
 			    </div>
 				<div class="form-group">
 			    	<label>Notes</label>
