@@ -25,5 +25,23 @@
             </div>
         </div>
     </div>
+    @if(Auth::user()->email === 'bamccoley@gmail.com')
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Admin') }}</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                          <a href="{{route('statistics.index')}}">
+                              <i class="fas fa-lock mr-2"></i>Statistics Panel
+                          </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection

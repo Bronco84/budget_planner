@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
 		'user' => UserController::class,
 		'budget' => BudgetController::class,
 		'budget.transaction' => TransactionController::class,
+        'statistics' => StatisticsController::class,
 	]);
 
     Route::resource('budget.account-balance', AccountBalanceController::class)->only(['create', 'store']);
