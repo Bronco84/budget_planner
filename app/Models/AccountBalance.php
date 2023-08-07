@@ -9,8 +9,8 @@ class AccountBalance extends Model
 
 
 
-	public $dates = [
-		'as_of_date'
+	public $casts = [
+		'as_of_date' => 'datetime',
 	];
 
     /**

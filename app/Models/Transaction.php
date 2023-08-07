@@ -15,10 +15,10 @@ class Transaction extends Model
 
     protected static $recordEvents = ['updated'];
 
-	public $dates = [
-		'date',
-        'start_date',
-        'end_date'
+	public $casts = [
+		'date' => 'datetime',
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
 	];
 
 	public $include = [
