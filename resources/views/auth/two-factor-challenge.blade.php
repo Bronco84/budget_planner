@@ -12,7 +12,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>Please enter authenitication code to login:</label>
-                                    <input required type="text" name="code" class="form-control" placeholder="Code from Authenticator"/>
+                                    <input autofocus required type="text" name="code" class="form-control" placeholder="Code from Authenticator"/>
                                     @if ($errors->any())
                                         <div class="text-center alert alert-danger mt-3">
                                                 @foreach ($errors->all() as $error)
